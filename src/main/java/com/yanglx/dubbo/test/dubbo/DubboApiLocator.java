@@ -122,9 +122,6 @@ public class DubboApiLocator {
         if (StrUtils.isNotBlank(dubboMethodEntity.getVersion())) {
             reference.setVersion(dubboMethodEntity.getVersion());
         }
-        if (StrUtils.isNotBlank(dubboMethodEntity.getGroup())) {
-            reference.setGroup(dubboMethodEntity.getGroup());
-        }
         return reference;
     }
 
@@ -142,6 +139,8 @@ public class DubboApiLocator {
         param.put("dubbo.application.service-discovery.migration", "APPLICATION_FIRST");
         registryConfig.setParameters(param);
         registryConfig.setAddress(address);
+        registryConfig.setTimeout(60*1000);
+        registryConfig.setGroup(dubboMethodEntity.getGroup());
         return registryConfig;
     }
 
